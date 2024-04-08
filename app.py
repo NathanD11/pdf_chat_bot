@@ -40,6 +40,7 @@ def get_text_chunks(text):
 
 # Function to create vector store
 def get_vectorstore(text_chunks):
+    # Add API key here and through Streamlit's secrets later
     embeddings = OpenAIEmbeddings(api_key="")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
