@@ -40,13 +40,14 @@ def get_text_chunks(text):
 
 # Function to create vector store
 def get_vectorstore(text_chunks):
-    # Add API key here and through Streamlit's secrets later
+    # Add API key here / add a secrets file that Streamlit supports
     embeddings = OpenAIEmbeddings(api_key="")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
 
 # Function to create conversation chain
 def get_conversation_chain(vectorstore):
+    # Add API key here / add a secrets file that Streamlit supports
     llm = ChatOpenAI(api_key="")
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(llm=llm, retriever=vectorstore.as_retriever(), memory=memory)
